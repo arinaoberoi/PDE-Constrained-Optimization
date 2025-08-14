@@ -1,7 +1,7 @@
 # PDE Adjoint Lab
 **Inverse Problems & PDE-Constrained Optimization in Python (NumPy-only)**
 
-This mini-engineering project implements a 2D Poisson/anisotropic diffusion forward solver on a regular grid and an **adjoint-state gradient** for **inverse coefficient (conductivity) estimation**. It demonstrates PDE-constrained optimization without automatic differentiation—derivatives are derived and implemented explicitly—exactly the kind of mathematical engineering PhD programs love to see.
+This mini-engineering project implements a 2D Poisson/anisotropic diffusion forward solver on a regular grid and an **adjoint-state gradient** for **inverse coefficient (conductivity) estimation**.
 
 ## Features
 - Finite-difference discretization of `-∇·(k(x) ∇u) = f` on a rectangular domain.
@@ -23,11 +23,6 @@ This mini-engineering project implements a 2D Poisson/anisotropic diffusion forw
 > Adjoint equation:  -∇·(k ∇p) = r  where  r  is a residual with point-sources at sensors.  
 > Gradient:  ∂J/∂k = -∇u · ∇p - α Δk.
 
-## Why this is compelling
-- Shows mastery of PDEs (elliptic), numerical linear algebra (CG), variational calculus, and inverse problems.
-- Implements adjoint derivatives by hand (a standard research technique in PDE-constrained optimization, imaging, and CFD).
-- Engineering polish: modular package, tests, docs, and a runnable example.
-
 ## Quickstart
 ```bash
 pip install -r requirements.txt
@@ -38,31 +33,3 @@ This will:
 2. Solve the forward PDE, sample noisy sensors.
 3. Run adjoint-based optimization to reconstruct `k`.
 4. Plot ground-truth vs. reconstruction and convergence.
-
-## Repo structure
-```
-pde-adjoint-lab/
-  pdealab/
-    __init__.py
-    grid.py
-    operators.py
-    poisson.py
-    adjoint.py
-    inverse.py
-    utils.py
-  examples/
-    01_inverse_conductivity.py
-  requirements.txt
-  LICENSE
-  README.md
-```
-
-## Extending ideas
-- Multi-source experiments and multi-frequency Poisson/Helmholtz.
-- Total Variation regularization (split Bregman / Chambolle–Pock).
-- Shape optimization with level sets (differentiate domain instead of `k`).
-- Ultrasound/thermal tomography forward models (time-dependent PDEs).
-- Switch linear solver to preconditioned CG (IC/AMG) or multigrid.
-
-## License
-MIT
